@@ -25,13 +25,16 @@ function run(dupFactor, bench) {
 
   if (isHarmony()) bench('Co', require('./co')(xs))
   bench('Callbacks (baseline)', require('./callbacks')[type](xs, done))
-  bench('Async', require('./async')[type](xs, done))
-  bench('Pinky', require('./pinky')(xs))
-  bench('Pinky (synchronous)', require('./pinky-sync')(xs))
-  bench('Q', require('./q')(xs))
+  bench('pipeline.js', require('./pipeline')[type](xs, done))
+  // bench('Async', require('./async')[type](xs, done))
+  // bench('Pinky', require('./pinky')(xs))
+  // bench('Pinky (synchronous)', require('./pinky-sync')(xs))
+  // bench('Q', require('./q')(xs))
   bench('When', require('./when')(xs))
-  bench('Deferred', require('./deferred')(xs))
-  bench('microPromise', require('./micropromise')(xs)) 
+  // bench('Deferred', require('./deferred')(xs))
+  // bench('microPromise', require('./micropromise')(xs)) 
+  // bench('mPromise', require('./mpromise')(xs)) 
+  // bench('bluebird', require('./bluebird')(xs)) 
 }
 
 benchmark.suite('Parallelism (no cache)', function(bench) {

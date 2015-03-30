@@ -20,21 +20,25 @@
   "license": "WTFPL",
   "readmeFilename": "README.md",
   "dependencies": {
-    "q": "~0.9.6",
-    "benchmark": "~1.0.0",
-    "athena": "~0.2.0",
-    "pinky": "~0.1.3",
+    "q": "*",
+    "benchmark": "*",
+    "athena": "*",
+    "pinky": "*",
     "pinky-sync": "git://github.com/killdream/pinky.git#sync-then",
-    "when": "~2.6.0",
-    "deferred": "~0.6.6",
-    "async": "~0.2.9",
-    "co": "~1.4.0",
-    "micropromise": "~0.3.0"
+    "when": "*",
+    "deferred": "*",
+    "async": "*",
+    "co": "*",
+    "mpromise": "*",
+    "micropromise": "*",
+    "bluebird": "*",
+    "pipeline.js-builder": "*",
+    "pipeline.js":"*"
   },
   "devDependencies": {
-    "noisyo": "~0.1.1",
-    "pinky-for-fun": "~0.2.1",
-    "pinky-combinators": "~0.1.1",
-    "lingerie": "~0.1.0"
+    "noisyo": "*",
+    "pinky-for-fun": "*",
+    "pinky-combinators": "*",
+    "lingerie": "*"
   }
 }

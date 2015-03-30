@@ -17,7 +17,7 @@ function parallel(fs, done) {
       if (err) done(err)
       else {
         results[i] = value
-        if (--length == 0) done(null, results);
+        if (--length == 0) done(null, results)
       }
     }
   }
