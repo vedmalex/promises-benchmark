@@ -9,16 +9,16 @@ function done(deferred) { deferred.resolve() }
 function run(noise, bench) {
   if (isHarmony()) bench('Co', require('./co')(dirname, noise))
   bench('Callbacks (baseline)', require('./callbacks')(dirname, noise, done))
-  bench('Callbacks (baseline) optimized', require('./pipeline')(dirname, noise, done))
-  // bench('Async', require('./async')(dirname, noise, done))
-  // bench('Pinky', require('./pinky')(dirname, noise))
-  // bench('Pinky (synchronous)', require('./pinky-sync')(dirname, noise))
-  // bench('Q', require('./q')(dirname, noise))
+  bench('pipeline.js', require('./pipeline')(dirname, noise, done))
+  bench('Pinky', require('./pinky')(dirname, noise))
+  bench('Async', require('./async')(dirname, noise, done))
+  bench('Pinky (synchronous)', require('./pinky-sync')(dirname, noise))
+  bench('Q', require('./q')(dirname, noise))
   bench('When', require('./when')(dirname, noise))
   // bench('Deferred', require('./deferred')(dirname, noise))
-  // bench('microPromise', require('./micropromise')(dirname, noise))
-  // bench('mPromise', require('./mpromise')(dirname, noise))
-  // bench('bluebird', require('./bluebird')(dirname, noise))
+  bench('microPromise', require('./micropromise')(dirname, noise))
+  bench('mPromise', require('./mpromise')(dirname, noise))
+  bench('bluebird', require('./bluebird')(dirname, noise))
 }
 
 benchmark.suite('Serial (no noise)', function(bench) {

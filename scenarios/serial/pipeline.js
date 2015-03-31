@@ -64,11 +64,11 @@ function makeLists(dir, noiseFactor, done) {
 
 var readAllRunner = pb.Sequential()
   .split(function(ctx) {
-    return ctx.files.map(function(f) {
-      return {
-        filename: f
-      };
-    });
+    var res = [];
+    for (var i = 0, len = ctx.files.length; i < len; i++) {
+      res.push({filename:ctx.files[i]});
+    }
+    return res;
   })
   .stage(function(ctx, done) {
     if (isString(ctx.filename))
@@ -85,9 +85,11 @@ var readAllRunner = pb.Sequential()
     }
   })
   .combine(function(ctx, children) {
-    ctx.texts = children.map(function(c) {
-      return c.content;
-    });
+    var res=[];
+    for (var i = 0, len = children.length; i < len; i++) {
+      res.push(children[i].content);
+    }
+    ctx.texts = res;
   }).build().toCallback();
 
 function readAll(xs, done) {

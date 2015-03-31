@@ -3,12 +3,14 @@ var pb = require('pipeline.js-builder');
 
 var parallelRunner = pb.Parallel()
   .split(function(ctx) {
-    return ctx.xs.map(function(item) {
-      return {
-        x: item,
+    var res = [];
+    for (var i = 0, len = ctx.xs.length; i < len; i++) {
+      res.push({
+        x: ctx.xs[i],
         f: ctx.f
-      };
-    });
+      });
+    }
+    return res;
   })
   .stage(function(ctx, done) {
     ctx.f(ctx.x, function(err, v) {
@@ -17,10 +19,11 @@ var parallelRunner = pb.Parallel()
     });
   })
   .combine(function(ctx, children) {
-    ctx.result = children.map(function(item) {
-      return item.v;
-    });
-
+    var res = [];
+    for (var i = 0, len = children.length; i < len; i++) {
+      res.push(children[i].v);
+    }
+    ctx.result = res;
   })
   .build().toCallback();
 
@@ -49,10 +52,7 @@ module.exports = {
   naive: function(list, done) {
     return function(deferred) {
       parallel(list, utils.readFile, function(err, r) {
-
         if (err) {
-          debugger;
-          err.stack;
           throw err;
         }
         done(deferred);
