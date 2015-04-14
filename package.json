@@ -32,7 +32,7 @@
     "mpromise": "*",
     "micropromise": "*",
     "bluebird": "*",
-    "pipeline.js-builder": "*",
+    "pipeline.js-builder": "0.0.7",
     "pipeline.js":"*"
   },
   "devDependencies": {
