@@ -66,15 +66,15 @@ var readAllRunner = pb.Sequential()
   .split(function(ctx) {
     var res = [];
     for (var i = 0, len = ctx.files.length; i < len; i++) {
-      res.push({filename:ctx.files[i]});
+      res.push({
+        filename: ctx.files[i]
+      });
     }
     return res;
   })
   .stage(function(ctx, done) {
     if (isString(ctx.filename))
-      fs.readFile(ctx.filename, {
-        encoding: 'utf-8'
-      }, function(err, content) {
+      fs.lstat(ctx.filename, function(err, content) {
         if (!err)
           ctx.content = content;
         done(err);
@@ -85,7 +85,7 @@ var readAllRunner = pb.Sequential()
     }
   })
   .combine(function(ctx, children) {
-    var res=[];
+    var res = [];
     for (var i = 0, len = children.length; i < len; i++) {
       res.push(children[i].content);
     }
